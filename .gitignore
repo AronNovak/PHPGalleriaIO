@@ -1,0 +1,6 @@
+*.jpg
+*.jpeg
+*.png
+local.config.php
+local.css
+local.js
