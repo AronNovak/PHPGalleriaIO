@@ -11,6 +11,20 @@ if (is_file($local_override) && is_readable($local_override)) {
 }
 
 header('Content-Type: text/html; charset=utf-8');
+
+if (isset($user) && isset($pass)) {
+  $validated = FALSE;
+
+  if (isset($_SERVER['PHP_AUTH_PW'])) {
+    $validated = ($user == $_SERVER['PHP_AUTH_USER']) && ($pass == md5($_SERVER['PHP_AUTH_PW']));
+  }
+  if (!$validated) {
+    header('WWW-Authenticate: Basic realm=""');
+    header('HTTP/1.0 401 Unauthorized');
+    die ("Not authorized");
+  }
+}
+
 $directory = new RecursiveDirectoryIterator(getcwd());
 $iterator = new RecursiveIteratorIterator($directory);
 $types = implode('|', $allowed_filetypes);
@@ -18,7 +32,7 @@ $filtered = new RegexIterator($iterator, '/^.+\.(' . $types . ')$/i', RecursiveR
 $output = "";
 $images = [];
 foreach ($filtered as $file) {
-  $image = str_replace(getcwd(), '', $file[0]);
+  $image = trim(str_replace(getcwd(), '', $file[0]), '/');
   $basename = pathinfo($image, PATHINFO_FILENAME);;
   $images[$basename . $image] = '<img data-layer="<h2>' . $basename . '</h2>" src="' . $image . '">';
 }

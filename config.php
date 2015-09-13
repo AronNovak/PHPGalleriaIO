@@ -17,7 +17,7 @@ $galleria_config = [
 ];
 
 // Further options:
-// 
+//
 // $title = "Custom page title at <title>";
 //
 // Local custom CSS override can be done
@@ -27,3 +27,6 @@ $galleria_config = [
 // $css = "http://example.com/totall.custom.css";
 // $js = "http://example.com/totall.custom.js";
 //
+// A little privacy:
+// $user = 'guests';
+// $pass = '[MD5 Hash of the desired password]';
