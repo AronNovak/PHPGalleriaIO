@@ -2,6 +2,8 @@
 Dead-simple, minimalistic PHP-based photo gallery for your files if you'd
 like to host them yourself, but still you would expect something decent.
 
+# Demo
+http://aron.novaak.net/PHPGalleriaIO-Demo/
 
 # Requirements
 PHP 5.x
