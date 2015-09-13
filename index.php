@@ -50,19 +50,6 @@ if (!isset($title)) {
   $title = basename(getcwd()) . ' (' . count($images) . ')';
 }
 
-?><!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title><?php print $title ?></title>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/galleria/1.4.2/galleria.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo $css ?>">
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/galleria/1.4.2/themes/classic/galleria.classic.min.css">
-  <script>var galleria_config = <?php print json_encode($galleria_config); ?></script>
-  <script src="<?php echo $js ?>"></script>
-</head>
-<body>
-  <div id="galleria"><?php echo $galleria ?></div>
-</body>
-</html>
+$galleria_config = json_encode($galleria_config);
+
+require_once 'index.tpl.php';
