@@ -12,19 +12,8 @@ body, #galleria {
 #galleria h2 {
   color: white;
   display: inline;
-  background-color: #000;
+  background-color: black;
   padding: 5px;
 
-  /* 70% opacity for supported browsers */
   background-color: rgba(0, 0, 0, 0.5);
-
-  /* IE 5.5+ support #BB000000 is ~70% opacity on black */
-  filter:progid:DXImageTransform.Microsoft.gradient(
-    startColorstr=#BB000000, endColorstr=#BB000000
-  );
-
-  /* IE 8 support */
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(
-        startColorstr=#BB000000, endColorstr=#BB000000
-          )";
 }
