@@ -6,7 +6,7 @@ like to host them yourself, but still you would expect something decent.
 http://aron.novaak.net/PHPGalleriaIO-Demo/
 
 # Requirements
-PHP 5.x
+PHP 5.4.x or newer
 
 # Usage
 Copy all the files in this repository to a directory that you'd like to turn
