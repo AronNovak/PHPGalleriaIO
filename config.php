@@ -18,6 +18,9 @@ $galleria_config = [
 
 // Further options:
 //
+// This path must be within the documentroot, publicly accesible.
+// $gallery_path = "/path/to/your/images";
+//
 // $title = "Custom page title at <title>";
 //
 // Local custom CSS override can be done

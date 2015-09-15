@@ -25,14 +25,19 @@ if (isset($user) && isset($pass)) {
   }
 }
 
-$directory = new RecursiveDirectoryIterator(getcwd());
+if (!isset($gallery_path)) {
+  $gallery_path = getcwd();
+}
+$gallery_path = realpath($gallery_path);
+
+$directory = new RecursiveDirectoryIterator($gallery_path);
 $iterator = new RecursiveIteratorIterator($directory);
 $types = implode('|', $allowed_filetypes);
 $filtered = new RegexIterator($iterator, '/^.+\.(' . $types . ')$/i', RecursiveRegexIterator::GET_MATCH);
 $output = "";
 $images = [];
 foreach ($filtered as $file) {
-  $image = trim(str_replace(getcwd(), '', $file[0]), '/');
+  $image = trim(str_replace($gallery_path, '', $file[0]), '/');
   $basename = pathinfo($image, PATHINFO_FILENAME);;
   $images[$basename . $image] = '<img data-layer="<h2>' . $basename . '</h2>" src="' . $image . '">';
 }
