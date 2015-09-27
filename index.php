@@ -36,6 +36,25 @@ $types = implode('|', $allowed_filetypes);
 $filtered = new RegexIterator($iterator, '/^.+\.(' . $types . ')$/i', RecursiveRegexIterator::GET_MATCH);
 $output = "";
 $images = [];
+
+// Either downloading all the images in a ZIP file.
+if (isset($_GET['download'])) {
+  $zip = new ZipArchive();
+  $temp_file = tempnam(sys_get_temp_dir(), 'phpgalleriaio');
+  $zip->open($temp_file, ZipArchive::CREATE);
+  foreach ($filtered as $file) {
+    $zip->addFile($file[0]);
+  }
+  $zip->close();
+  header('Content-Type: application/zip');
+  header('Content-disposition: attachment; filename=gallery.zip');
+  header('Content-Length: ' . filesize($temp_file));
+  readfile($temp_file);
+  unlink($temp_file);
+  exit(0);
+}
+
+// Or serving them as a web-based gallery.
 foreach ($filtered as $file) {
   $image = trim(str_replace($gallery_path, '', $file[0]), '/');
   $basename = pathinfo($image, PATHINFO_FILENAME);;
