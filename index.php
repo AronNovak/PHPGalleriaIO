@@ -56,7 +56,12 @@ if (isset($_GET['download'])) {
 
 // Or serving them as a web-based gallery.
 foreach ($filtered as $file) {
-  $image = trim(str_replace($gallery_path, '', $file[0]), '/');
+  // Clean up the image path from the gallery path.
+  $pos = strpos($file[0], $gallery_path);
+  if ($pos !== FALSE) {
+    $file[0] = substr_replace($file[0], '', $pos, strlen($gallery_path));
+  }
+  $image = trim($file[0], '/');
   $basename = pathinfo($image, PATHINFO_FILENAME);;
   $images[$basename . $image] = '<img data-layer="<h2>' . $basename . '</h2>" src="' . $image . '">';
 }
