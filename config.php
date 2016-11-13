@@ -27,8 +27,8 @@ $galleria_config = [
 // via local.css and local.js.
 // For anything else, use:
 //
-// $css = "http://example.com/totall.custom.css";
-// $js = "http://example.com/totall.custom.js";
+// $css = "http://example.com/custom.css";
+// $js = "http://example.com/custom.js";
 //
 // A little privacy:
 // $user = 'guests';
